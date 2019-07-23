@@ -20,6 +20,7 @@ from web.views.publication import PublicationCreateView, PublicationListView, Pu
 from web.views.storage_locations import StorageLocationListView, StorageLocationEditView, \
     StorageLocationDetailView, StorageLocationCreateView, remove_storage_location_from_dataset, \
     pick_storage_location_for_dataset, add_storage_location_to_dataset
+from web.views.user import UsersListView, UserDetailView
 from web.views.users import add_personnel_to_project, remove_personnel_from_project
 
 # Use include() to add paths from the catalog application
@@ -170,5 +171,11 @@ web_urls = [
     path('api/users', api.users, name="api_users"),
     path('api/cohorts', api.cohorts, name="api_cohorts"),
     path('api/partners', api.partners, name="api_partners"),
-    path('api/termsearch/<slug:category>', api.termsearch, name="api_termsearch")
+    path('api/termsearch/<slug:category>', api.termsearch, name="api_termsearch"),
+
+    #User Management
+    path('definitions/users', UsersListView.as_view(), name="users"),
+    path('definitions/users/<int:pk>/', UserDetailView.as_view(), name="user"),
+    # path('definitions/users/<int:pk>/edit', UserEditView.as_view(), name="user_edit")
+
 ]
